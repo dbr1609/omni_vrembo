@@ -1,11 +1,14 @@
 import * as React from 'react'
 import { graphql } from 'gatsby'
+import {GatsbyImage, getImage} from 'gatsby-plugin-image'
 import Layout from '../../components/layout'
 
 const PlayerPage = ({data: {wpPlayer: {playerMeta: player}}}) => {
+  const image = getImage(player.profilePicture.localFile)
   return (
     <Layout pageTitle="Players Template">
       <div>
+        <GatsbyImage image={image} alt={player.profilePicture.altText} />
         <h1>{player.personal.firstname} {player.personal.familyname}</h1>
         <h3>Persoonlijke info</h3>
         <p>Voornaam: {player.personal.firstname}</p>
@@ -74,6 +77,14 @@ export const query = graphql`
           }
           ranking
           service
+        }
+        profilePicture {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(placeholder: BLURRED)
+            }
+          }
+          altText
         }
       }
     }
