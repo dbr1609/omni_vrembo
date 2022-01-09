@@ -5,7 +5,6 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import Player from "../../components/player"
 import {
     playersPicture,
-    section,
     subtitle,
     players,
     description,
@@ -25,7 +24,7 @@ const PlayersPage = ({
             image={image}
             alt={playersPage.headerPlayers.picture.altText}
         />
-        <div className={section}>
+        <div>
             <h2 className={subtitle}> {playersPage.headerPlayers.title}</h2>
             <div
                 className={description}

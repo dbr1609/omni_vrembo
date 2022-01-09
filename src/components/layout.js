@@ -44,17 +44,17 @@ const Layout = ({ pageTitle, children }) => {
         </li>
           <li className={navLinkItem}>
             <Link className={navLinkText} to="/">
-              Home
-            </Link>
-          </li>
-          <li className={navLinkItem}>
-            <Link className={navLinkText} to="/about">
-              About
+              Welkom
             </Link>
           </li>
           <li className={navLinkItem}>
             <Link className={navLinkText} to="/players">
-              Players
+              Spelers
+            </Link>
+          </li>
+          <li className={navLinkItem}>
+            <Link className={navLinkText} to="/contact">
+              Contacteer ons
             </Link>
           </li>
         </ul>
@@ -65,7 +65,7 @@ const Layout = ({ pageTitle, children }) => {
     </div>
       <Footer
         siteTitle={data.site.siteMetadata.title}
-        clubInformation={data.wpPage.contactPage.clubInformation}
+        //clubInformation={data.wpPage.contactPage.clubInformation}
       />
     </>
   )

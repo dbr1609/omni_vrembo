@@ -17,6 +17,10 @@
     height: 40vw;
     max-width: 500px;
     max-height: 500px;
+    border-bottom-left-radius: 20%;
+    border-bottom-right-radius: 20%;
+    border-top-left-radius: 20%;
+    border-top-right-radius: 20%;
   }
   
   .header-title {
@@ -29,7 +33,7 @@
   
   .CTA {
     display: block;
-    background-color: #37ba83;
+    background-color: #7deebf;
     color: white;
     border: 1px solid #000;
     border-radius: 4px;
@@ -41,9 +45,9 @@
   }
   
   .CTA:hover {
-    color: #37ba83;
+    color: #7deebf;
     background-color: rgb(0, 17, 4);
-    border: 1px solid #37ba83;
+    border: 1px solid #7deebf;
   }
 
   .subtitle {
@@ -73,9 +77,86 @@
   .description {
     margin: auto;
   }
-  
-  @media screen and (max-width: 1200px) {
-    .hero {
-      transform: translateX(-5%);
-    }
+
+  .player-name {
+    font-size: 2rem;
+    text-transform: uppercase;
+    color: #7deebf;
+    margin: 0;
   }
+  
+  .player-characteristics {
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    margin: 0.5rem 0 1rem 0;
+  }
+  
+  .full-name {
+    font-size: 3rem;
+    text-transform: uppercase;
+    margin: 1rem 0 1.5rem 0;
+  }
+  
+  .player-history {
+    margin-bottom: 2rem;
+    max-width: 700px;
+  }
+  
+  .player-info {
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #7deebf;
+  }
+
+  .detail-picture {
+    width: 40vw;
+    height: 40vw;
+    max-width: 300px;
+    max-height: 300px;
+    margin-bottom: 50px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-bottom-left-radius: 20%;
+    border-bottom-right-radius: 20%;
+    border-top-left-radius: 20%;
+    border-top-right-radius: 20%;
+  }
+
+  .club-info {
+    margin-top: 60px;
+  }
+  
+  .club-info p,
+  .link {
+    display: block;
+    margin-bottom: 1rem;
+  }
+  
+  .link {
+    color: #37ba83;
+  }
+  
+  .socials {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+  }
+  
+  .facebook {
+    background-size: 30px 30px;
+    height: 30px;
+    width: 30px;
+    margin-left: 1rem;
+    transition: transform 0.3 ease;
+  }
+  
+  .facebook:hover {
+    transform: scale(1.1);
+  }
+  
+  
+  .facebook {
+    background-image: url("./images/facebook.svg");
+  }
+

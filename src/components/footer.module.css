@@ -32,13 +32,12 @@ p {
   }
   
   .title::after {
-    content: ".";
     position: absolute;
     right: -5px;
     bottom: 3px;
     font-size: 1.8rem;
     font-family: serif;
-    color: #37ba83;
+    color: #7deebf;
     margin-right: auto;
   }
   

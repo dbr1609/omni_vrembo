@@ -2,49 +2,86 @@ import * as React from 'react'
 import { graphql } from 'gatsby'
 import {GatsbyImage, getImage} from 'gatsby-plugin-image'
 import Layout from '../../components/layout'
+import {
+  header,
+  headerInfo,
+  detailPicture,
+  fullName,
+  playerCharacteristics,
+  playerHistory,
+  playerInfo,
+} from "../../page.module.css"
+//import './styles.css'
 
-const PlayerPage = ({data: {wpPlayer: {playerMeta: player}}}) => {
-  const image = getImage(player.profilePicture.localFile)
-  return (
-    <Layout pageTitle="Players Template">
-      <div>
-        <GatsbyImage image={image} alt={player.profilePicture.altText} />
-        <h1>{player.personal.firstname} {player.personal.familyname}</h1>
-        <h3>Persoonlijke info</h3>
-        <p>Voornaam: {player.personal.firstname}</p>
-        <p>Achternaam: {player.personal.familyname}</p>
-        <p>Geslacht: {player.personal.sex}</p>
-        <p>Geboortedatum: {player.personal.dateOfBirth}</p>
-        <h3>Contactinformatie</h3>
-        <p>straat: {player.contact.street} {player.contact.houseNumber} {player.contact.box}</p>
-        <p>Gemeente: {player.contact.postalCode} {player.contact.city}</p>
-        <p>E-mail: {player.contact.emailaddress}</p>
-        <p>Telefoonnummer: {player.contact.phoneNumber}</p>
-        <h3>Tafeltennis info</h3>
-        <p>Klassement: {player.capabilities.ranking}</p>
-        <h5>Opslag</h5>
-        <p>Opslag: {player.capabilities.service}/10</p>
-        <h5>Voorhandslagen</h5>
-        <p>Contra: {player.capabilities.forehandStrokes.contraForehand}/10</p>
-        <p>Topspin: {player.capabilities.forehandStrokes.topspinForehand}/10</p>
-        <p>Duw: {player.capabilities.forehandStrokes.pushForehand}/10</p>
-        <p>Flip: {player.capabilities.forehandStrokes.flipForehand}/10</p>
-        <p>Smash: {player.capabilities.forehandStrokes.smashForehand}/10</p>
-        <h5>Rughandslagen</h5>
-        <p>Contra: {player.capabilities.backhandStrokes.contraBackhand}/10</p>
-        <p>Topspin: {player.capabilities.backhandStrokes.topspinBackhand}/10</p>
-        <p>Duw: {player.capabilities.backhandStrokes.pushBackhand}/10</p>
-        <p>Flip: {player.capabilities.backhandStrokes.flipBackhand}/10</p>
-        <p>Smash: {player.capabilities.backhandStrokes.smashBackhand}/10</p>
-      </div>
-    </Layout>
-  )
-}
+  const PlayerPage = ({
+    data: {
+      wpPlayer: {
+        playerMeta: player,
+        characteristics: {nodes: characteristics},
+      },
+    },
+  }) => {
+    const image = getImage(player.profilePicture.localFile)
+    return (
+      <Layout pageTitle="Players Template">
+        <h1 className={fullName}>{player.personal.firstname} {player.personal.familyname}</h1>
+        <div classname={playerCharacteristics}>
+            {characteristics.map((characteristic, i) => (
+              <span key={i}>
+                {characteristic.name} {i + 1 < characteristics.length && "- "}
+              </span>
+            ))}
+          </div>
+        <div className={header}>
+          <div classname={headerInfo}>
+
+          <h3>Persoonlijke info</h3>
+          <p><span className={playerInfo}>Voornaam:</span> {player.personal.firstname}</p>
+          <p><span className={playerInfo}>Achternaam:</span> {player.personal.familyname}</p>
+          <p><span className={playerInfo}>Geslacht:</span> {player.personal.sex}</p>
+          <p><span className={playerInfo}>Geboortedatum:</span> {player.personal.dateOfBirth}</p>
+          <h3>Contactinformatie</h3>
+          <p><span className={playerInfo}>straat:</span> {player.contact.street} {player.contact.houseNumber} {player.contact.box}</p>
+          <p><span className={playerInfo}>Gemeente:</span> {player.contact.postalCode} {player.contact.city}</p>
+          <p><span className={playerInfo}>E-mail:</span> {player.contact.emailaddress}</p>
+          <p><span className={playerInfo}>Telefoonnummer:</span> {player.contact.phoneNumber}</p>
+          <h3>Tafeltennis info</h3>
+          <p><span className={playerInfo}>Klassement:</span> {player.capabilities.ranking}</p>
+          <h5>Voorhandslagen</h5>
+          <p><span className={playerInfo}>Contra:</span> {player.capabilities.forehandStrokes.contraForehand}/10</p>
+          <p><span className={playerInfo}>Topspin:</span> {player.capabilities.forehandStrokes.topspinForehand}/10</p>
+          <p><span className={playerInfo}>Duw:</span> {player.capabilities.forehandStrokes.pushForehand}/10</p>
+          <p><span className={playerInfo}>Flip:</span> {player.capabilities.forehandStrokes.flipForehand}/10</p>
+          <p><span className={playerInfo}>Smash:</span> {player.capabilities.forehandStrokes.smashForehand}/10</p>
+          <h5>Rughandslagen</h5>
+          <p><span className={playerInfo}>Contra:</span> {player.capabilities.backhandStrokes.contraBackhand}/10</p>
+          <p><span className={playerInfo}>Topspin:</span> {player.capabilities.backhandStrokes.topspinBackhand}/10</p>
+          <p><span className={playerInfo}>Duw:</span> {player.capabilities.backhandStrokes.pushBackhand}/10</p>
+          <p><span className={playerInfo}>Flip:</span> {player.capabilities.backhandStrokes.flipBackhand}/10</p>
+          <p><span className={playerInfo}>Smash:</span> {player.capabilities.backhandStrokes.smashBackhand}/10</p>
+          </div>
+          <div>
+          <GatsbyImage
+            className={detailPicture} 
+            image={image}
+            alt={player.profilePicture.altText}
+          />
+          <div
+            className={playerHistory}
+            dangerouslySetInnerHTML={{ __html: player.history }}
+          />
+          </div>
+          
+          </div>
+      </Layout>
+    )
+  }
 
 export const query = graphql`
   query MyQuery ($id: String) {
     wpPlayer (id: {eq: $id}) {
       playerMeta {
+        history
         personal {
           familyname
           firstname
@@ -85,6 +122,11 @@ export const query = graphql`
             }
           }
           altText
+        }
+      }
+      characteristics {
+        nodes {
+          name
         }
       }
     }
